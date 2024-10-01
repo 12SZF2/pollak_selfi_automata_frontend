@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <main class="h-screen w-screen items-center flex flex-col bg-gradient-to-t from-[#424144] to-[#ffffff]">
+  <main class="h-screen w-screen items-center flex flex-col bg-gradient-to-t from-[#424144] to-[#ffffff] font-jura">
     <div class="size-32 top-1 absolute left-2 cursor cursor-pointer">
-      <img src="../pollak_selfie_logo.png" alt="logo">
+      <a href="/src/Home.vue"><img src="../pollak_selfie_logo.png" alt="logo"></a>
     </div>
     <div class="place-content-start">
       <h1 class="text-5xl mt-8">Selfie automata</h1>
