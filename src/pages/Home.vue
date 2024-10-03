@@ -10,7 +10,7 @@
     </div>
     <div class="flex-row text-3xl mt-4">
         <RouterLink to="/szerkeszto">
-        <input type="button" value="Kép készítése" class="bg-orange-400 border-2 border-stone-950 h-14 w-full rounded-xl cursor-pointer">
+        <input type="button" value="Kép készítése" class="bg-orange-400 border-2 border-stone-950 h-14 w-60 rounded-xl cursor-pointer ">
     </RouterLink> 
     </div>
             
