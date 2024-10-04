@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-<div class="flex flex-col items-center justify-center border-2 border-slate-800 h-2/3 w-1/3 bg-gradient-to-t from-[#5d5c5f] to-[#ffffff] mt-20">
+<div class="flex flex-col items-center justify-center border-2 border-slate-800 h-2/3 md:w-2/3 rounded-xl bg-gradient-to-t from-[#5d5c5f] to-[#ffffff] mt-20">
     <div class="flex items-center justify-center border-2 border-slate-800 h-1/2 w-full md:w-1/2 bg-white">
         <div class="">
             <p class="text-3xl">...Selfie előnézete...</p>  
