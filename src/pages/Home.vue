@@ -1,23 +1,53 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+
 import { useRouter } from "vue-router";
 const router = useRouter()
 const counter = ref(3)
 const isclicked = ref(false)
+const video = ref(null)
+const canvas = ref(null)
+let image_data_url = "";
 function visszaszamlalo(){
+
     isclicked.value = true
     const IntervalRef = setInterval(()=>{
     counter.value--
+	console.log("NEMJÓÓÓÓÓÓÓ")
 }, 1000)
 
 setTimeout(()=> {
   clearInterval(IntervalRef)
-  counter.value = 3
-  router.push('/szerkeszto')
-}, 3000)
+  counter.value = 5
+//   router.push('/szerkeszto')
+takePicture();
+}, 5500)
 }
 
+onMounted(() => {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            video.value.srcObject = stream;
+            video.value.play();
+        })
+        .catch(err => {
+            console.error("Error accessing media devices.", err);
+        });
 
+    // Ensure video is ready before taking a picture
+    video.value.addEventListener("playing", () => {
+        // If you want to auto-take picture after some time, you can do so here.
+    });
+});
+function takePicture() {
+    if (video.value && video.value.readyState === 4) { // Check if video is ready
+        canvas.value.getContext("2d").drawImage(video.value, 0, 0, canvas.value.width, canvas.value.height);
+        image_data_url = canvas.value.toDataURL("image/jpeg");
+        console.log(image_data_url);
+    } else {
+        console.warn("Video is not ready yet.");
+    }
+}
 </script>
 
 <template>
@@ -25,33 +55,20 @@ setTimeout(()=> {
         <div class="absolute left-50% top-50% text-2xl"><link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Londrina+Outline" rel='stylesheet' type='text/css' />
 
 <div class="cd-wrapper">
-  <div class="cd-outer-top-left">
-  <div class="cd-inner-top-left"></div>
-</div>
-      
-<div class="cd-outer-top-right">
-  <div class="cd-inner-top-right"></div>
-</div>
-      
-<div class="cd-outer-btm-left">
-  <div class="cd-inner-btm-left"></div>
-</div>
-      
-<div class="cd-outer-btm-right">
-  <div class="cd-inner-btm-right"></div>
-</div>
+  
       
 <div class="cd-pointer"></div>
       
 <div class="cd-number-wrapper">
-  <span :class="{'cd-number-five':isclicked}">5</span>
-  <span :class="{'cd-number-four':isclicked}">4</span>
-  <span :class="{'cd-number-three':isclicked}">3</span>
-  <span :class="{'cd-number-two':isclicked}">2</span>
-  <span :class="{'cd-number-one':isclicked}">1</span>
+  <span class="none" :class="{'cd-number-five':isclicked}">5</span>
+  <span class="none" :class="{'cd-number-four':isclicked}">4</span>
+  <span class="none" :class="{'cd-number-three':isclicked}">3</span>
+  <span class="none" :class="{'cd-number-two':isclicked}">2</span>
+  <span class="none" :class="{'cd-number-one':isclicked}">1</span>
 </div></div></div>
         <div class="">
-            <p class="text-3xl">Selfie készítése</p>  
+           <video autoplay="true" ref="video" ></video> 
+		   <canvas ref="canvas" class="rounded-md absolute" width="640" height="480"></canvas>
         </div>
     </div>
     <div class="flex-row text-3xl mt-4">
@@ -197,6 +214,7 @@ setTimeout(()=> {
 }
 	
 .cd-number-five {
+	display: block !important; 
 	position: absolute;
 	opacity: 0;
 	margin: 0 auto 0 auto;
@@ -228,6 +246,7 @@ setTimeout(()=> {
 	to {  transform: scale(1.3); opacity: 1;}}
 
 .cd-number-four {
+	display: block !important;
 	position: absolute;
 	opacity: 0;
 	-webkit-animation: cd-number-four-anim 1.2s ease 1.2s 1 normal;
@@ -258,6 +277,7 @@ setTimeout(()=> {
 	to {  transform: scale(1.3); opacity: 1;}}
 
 .cd-number-three {
+	display: block !important;
 	position: absolute;
 	opacity: 0;
 	-webkit-animation: cd-number-three-anim 1.2s ease 2.4s 1 normal;
@@ -288,6 +308,7 @@ setTimeout(()=> {
 	to {  transform: scale(1.3); opacity: 1;}}
 
 .cd-number-two {
+	display: block !important;
 	position: absolute;
 	opacity: 0;
 	-webkit-animation: cd-number-two-anim 1.2s ease 3.6s 1 normal;
@@ -318,6 +339,7 @@ setTimeout(()=> {
 	to {  transform: scale(1.3); opacity: 1;}}
 
 .cd-number-one {
+	display: block !important;
 	position: absolute;
 	opacity: 0;
 	-webkit-animation: cd-number-one-anim 1.2s ease 4.8s 1 normal;
@@ -346,4 +368,8 @@ setTimeout(()=> {
 @keyframes cd-number-one-anim {
 	from {transform: scale(0.5); opacity: 0;}
 	to {  transform: scale(1.3); opacity: 1;}}
+
+.none{
+	display: none;
+}
 </style>
