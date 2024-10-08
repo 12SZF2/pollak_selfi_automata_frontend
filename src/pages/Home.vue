@@ -2,17 +2,19 @@
 import { ref, onMounted } from "vue";
 import { store } from "../config/store.js";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 const counter = ref(3);
 const isclicked = ref(false);
 const video = ref(null);
 const canvas = ref(null);
 let image_data_url = "";
+
 function visszaszamlalo() {
   isclicked.value = true;
   const IntervalRef = setInterval(() => {
     counter.value--;
-    console.log("nemjó")
+    console.log("nemjó");
   }, 1000);
 
   setTimeout(() => {
@@ -57,7 +59,7 @@ function takePicture() {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 border-slate-800 h-[728px] w-[972px]  bg-white mt-36"
+    class="flex items-center justify-center border-2 border-slate-800 h-[728px] w-[972px] bg-white mt-36"
   >
     <div class="absolute left-50% top-50% text-2xl">
       <link
