@@ -12,13 +12,12 @@ function visszaszamlalo() {
   isclicked.value = true;
   const IntervalRef = setInterval(() => {
     counter.value--;
-    console.log("NEMJÓÓÓÓÓÓÓ");
+    console.log("nemjó")
   }, 1000);
 
   setTimeout(() => {
     clearInterval(IntervalRef);
     counter.value = 5;
-    router.push("/szerkeszto");
     takePicture();
     store.data.image = image_data_url;
     console.log(store.data.image);
@@ -58,7 +57,7 @@ function takePicture() {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 border-slate-800 h-1/2 w-full md:w-1/2 bg-white mt-36"
+    class="flex items-center justify-center border-2 border-slate-800 h-[728px] w-[972px]  bg-white mt-36"
   >
     <div class="absolute left-50% top-50% text-2xl">
       <link
@@ -80,7 +79,7 @@ function takePicture() {
       </div>
     </div>
     <div class="">
-      <video autoplay="true" ref="video"></video>
+      <video autoplay="true" width="972" height="728" ref="video"></video>
       <canvas
         ref="canvas"
         class="rounded-md absolute hidden"
@@ -92,7 +91,7 @@ function takePicture() {
   <div class="flex-row text-3xl mt-4">
     <input
       type="button"
-      @click="visszaszamlalo"
+      @click="visszaszamlalo()"
       value="Kép készítése"
       class="bg-orange-400 border-2 border-stone-950 h-14 w-60 rounded-xl cursor-pointer"
     />
@@ -103,7 +102,7 @@ function takePicture() {
   width: 350px;
   height: 350px;
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   margin-top: -175px;
   margin-left: -175px;
@@ -258,7 +257,7 @@ function takePicture() {
 .cd-number-wrapper {
   width: 80px;
   height: 189px;
-  top: 50%;
+  top: 30%;
   margin: 80px auto 0 auto;
   font-size: 10em;
   font-family: "Londrina Outline"; /* Bowlby One SC */
