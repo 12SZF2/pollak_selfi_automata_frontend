@@ -14,7 +14,6 @@ function visszaszamlalo() {
   isclicked.value = true;
   const IntervalRef = setInterval(() => {
     counter.value--;
-    console.log("nemjó");
   }, 1000);
 
   setTimeout(() => {
@@ -22,7 +21,6 @@ function visszaszamlalo() {
     counter.value = 5;
     takePicture();
     store.data.image = image_data_url;
-    console.log(store.data.image);
     router.push("/szerkeszto");
   }, 5500);
 }
@@ -50,7 +48,6 @@ function takePicture() {
       .getContext("2d")
       .drawImage(video.value, 0, 0, canvas.value.width, canvas.value.height);
     image_data_url = canvas.value.toDataURL("image/jpeg");
-    console.log("Image taken");
   } else {
     console.warn("Video is not ready yet.");
   }
@@ -59,9 +56,9 @@ function takePicture() {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 border-slate-800 h-[728px] w-[972px] bg-white mt-36"
+    class="flex items-center justify-center border-2 mt-[200px] border-slate-800 h-[754px] w-[1000px] bg-white"
   >
-    <div class="absolute left-50% top-50% text-2xl">
+    <div class="absolute left-[50%] top-[2000px] text-2xl">
       <link
         href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Londrina+Outline"
         rel="stylesheet"
@@ -80,22 +77,22 @@ function takePicture() {
         </div>
       </div>
     </div>
-    <div class="">
-      <video autoplay="true" width="972" height="728" ref="video"></video>
+    <div class="flex justify-center h-full">
+      <video autoplay="true" width="1000" height="800" ref="video"></video>
       <canvas
         ref="canvas"
         class="rounded-md absolute hidden"
-        width="640"
-        height="480"
+        width="1920"
+        height="1080"
       ></canvas>
     </div>
   </div>
-  <div class="flex-row text-3xl mt-4">
+  <div class="flex flex-row text-5xl mt-[100px] w-full justify-center font-semibold items-center">
     <input
       type="button"
       @click="visszaszamlalo()"
       value="Kép készítése"
-      class="bg-orange-400 border-2 border-stone-950 h-14 w-60 rounded-xl cursor-pointer"
+      class="bg-orange-400 border-2 border-stone-950 h-28 w-2/3 rounded-xl cursor-pointer meret "
     />
   </div>
 </template>
@@ -104,7 +101,7 @@ function takePicture() {
   width: 350px;
   height: 350px;
   position: fixed;
-  top: 30%;
+  top: 55%;
   left: 50%;
   margin-top: -175px;
   margin-left: -175px;
