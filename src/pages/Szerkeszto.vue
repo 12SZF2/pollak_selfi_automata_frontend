@@ -21,7 +21,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 border-slate-800 h-[752px] w-[1000px] bg-white mt-36"
+    class="flex items-center justify-center border-2 border-slate-800 h-[752px] w-[1000px] bg-white sm:mt-36 xl:mt-10"
   >
     <canvas
       ref="canvas"
@@ -30,20 +30,20 @@ onMounted(() => {
       height="800"
     ></canvas>
   </div>
-  <div class="flex-row text-5xl mt-36">
+  <div class="flex-row text-5xl sm:mt-36 xl:mt-28">
     <RouterLink to="/">
-    <input
-      type="button"
-      value="Újra"
-      class="bg-orange-400 border-2 border-stone-950 h-28 w-52 rounded-xl cursor-pointer"
-    />
+      <input
+        type="button"
+        value="Újra"
+        class="bg-orange-400 border-2 border-stone-950 h-28 w-52 rounded-xl cursor-pointer"
+      />
     </RouterLink>
     <!-- <input
       type="button"
       value="Filterek"
       class="ml-10 bg-orange-400 border-2 border-stone-950 h-14 w-36 rounded-xl cursor-pointer"
     /> -->
-  
+
     <RouterLink to="/elkuldes">
       <input
         type="button"
