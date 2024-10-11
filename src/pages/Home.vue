@@ -49,7 +49,7 @@ function takePicture() {
       .drawImage(video.value, 0, 0, canvas.value.width, canvas.value.height);
     // image_data_url = canvas.value.toDataURL("image/jpeg");
     var watermarkImage = new Image();
-watermarkImage.src = './pollak_selfie_logo.png'; // Source of your watermark image
+watermarkImage.src = new URL( '../../pollak_selfie_logo.png', import.meta.url).href; // Source of your watermark image
     image_data_url = watermarkedDataURL(canvas.value, watermarkImage)
   } else {
     console.warn("Video is not ready yet.");
