@@ -49,41 +49,50 @@ function takePicture() {
       .drawImage(video.value, 0, 0, canvas.value.width, canvas.value.height);
     // image_data_url = canvas.value.toDataURL("image/jpeg");
     var watermarkImage = new Image();
-watermarkImage.src = new URL( '../../pollak_selfie_logo.png', import.meta.url).href; // Source of your watermark image
-    image_data_url = watermarkedDataURL(canvas.value, watermarkImage)
+    watermarkImage.src = new URL(
+      "../../pollak_selfie_logo.png",
+      import.meta.url
+    ).href; // Source of your watermark image
+    image_data_url = watermarkedDataURL(canvas.value, watermarkImage);
+    console.log(image_data_url);
   } else {
     console.warn("Video is not ready yet.");
   }
 }
 function watermarkedDataURL(canvas, watermarkImage) {
-  var tempCanvas = document.createElement('canvas');
-  var tempCtx = tempCanvas.getContext('2d');
+  var tempCanvas = document.createElement("canvas");
+  var tempCtx = tempCanvas.getContext("2d");
   var cw, ch;
-  
+
   // Set canvas dimensions
   cw = tempCanvas.width = canvas.width;
   ch = tempCanvas.height = canvas.height;
-  
+
   // Draw the original canvas image
   tempCtx.drawImage(canvas, 0, 0);
-  
+
   // Set the global alpha for transparency
-  tempCtx.globalAlpha = 0.50;
-  
+  tempCtx.globalAlpha = 0.5;
+
   // Draw the watermark image
   var imgWidth = 200;
   var imgHeight = 200;
-  
+
   // Position the watermark image (bottom right corner)
-  tempCtx.drawImage(watermarkImage, cw - imgWidth - 10, ch - imgHeight - 10, imgWidth, imgHeight);
-  
+  tempCtx.drawImage(
+    watermarkImage,
+    cw - imgWidth - 10,
+    ch - imgHeight - 10,
+    imgWidth,
+    imgHeight
+  );
+
   // Reset global alpha to fully opaque for any further drawing if needed
   tempCtx.globalAlpha = 1.0;
 
   // Return the data URL of the watermarked image
   return tempCanvas.toDataURL();
 }
-
 </script>
 
 <template>
@@ -120,7 +129,7 @@ function watermarkedDataURL(canvas, watermarkImage) {
     </div>
   </div>
   <div
-    class="flex flex-row text-5xl mt-[100px] w-full justify-center font-semibold items-center"
+    class="flex flex-row text-5xl sm:mt-[100px] xl:mt-10 w-full justify-center font-semibold items-center"
   >
     <input
       type="button"

@@ -14,7 +14,7 @@ import { RouterLink, RouterView } from "vue-router";
       /></RouterLink>
     </div>
     <div class="place-content-start">
-      <h1 class="text-8xl sm:mt-80 xl:mt-20 font-semibold">Selfie automata</h1>
+      <h1 class="text-8xl sm:mt-80 xl:mt-2 font-semibold">Selfie automata</h1>
     </div>
     <RouterView />
   </main>

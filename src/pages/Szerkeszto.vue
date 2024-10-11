@@ -30,7 +30,7 @@ onMounted(() => {
       height="800"
     ></canvas>
   </div>
-  <div class="flex-row text-5xl sm:mt-36 xl:mt-28">
+  <div class="flex-row text-5xl sm:mt-36 xl:mt-10">
     <RouterLink to="/">
       <input
         type="button"
