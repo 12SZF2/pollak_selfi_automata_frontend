@@ -47,11 +47,43 @@ function takePicture() {
     canvas.value
       .getContext("2d")
       .drawImage(video.value, 0, 0, canvas.value.width, canvas.value.height);
-    image_data_url = canvas.value.toDataURL("image/jpeg");
+    // image_data_url = canvas.value.toDataURL("image/jpeg");
+    var watermarkImage = new Image();
+watermarkImage.src = '../../pollak_selfie_logo.png'; // Source of your watermark image
+    image_data_url = watermarkedDataURL(canvas.value, watermarkImage)
   } else {
     console.warn("Video is not ready yet.");
   }
 }
+function watermarkedDataURL(canvas, watermarkImage) {
+  var tempCanvas = document.createElement('canvas');
+  var tempCtx = tempCanvas.getContext('2d');
+  var cw, ch;
+  
+  // Set canvas dimensions
+  cw = tempCanvas.width = canvas.width;
+  ch = tempCanvas.height = canvas.height;
+  
+  // Draw the original canvas image
+  tempCtx.drawImage(canvas, 0, 0);
+  
+  // Set the global alpha for transparency
+  tempCtx.globalAlpha = 0.50;
+  
+  // Draw the watermark image
+  var imgWidth = 200;
+  var imgHeight = 200;
+  
+  // Position the watermark image (bottom right corner)
+  tempCtx.drawImage(watermarkImage, cw - imgWidth - 10, ch - imgHeight - 10, imgWidth, imgHeight);
+  
+  // Reset global alpha to fully opaque for any further drawing if needed
+  tempCtx.globalAlpha = 1.0;
+
+  // Return the data URL of the watermarked image
+  return tempCanvas.toDataURL();
+}
+
 </script>
 
 <template>
