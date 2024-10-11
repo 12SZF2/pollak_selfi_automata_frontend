@@ -88,7 +88,7 @@ function watermarkedDataURL(canvas, watermarkImage) {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 mt-[200px] border-slate-800 h-[754px] w-[1000px] bg-white"
+    class="flex items-center justify-center border-2 sm:mt-28 xl:mt-10 border-slate-800 h-[754px] w-[1000px] bg-white"
   >
     <div class="absolute left-[50%] top-[2000px] text-2xl">
       <link
@@ -119,12 +119,14 @@ function watermarkedDataURL(canvas, watermarkImage) {
       ></canvas>
     </div>
   </div>
-  <div class="flex flex-row text-5xl mt-[100px] w-full justify-center font-semibold items-center">
+  <div
+    class="flex flex-row text-5xl mt-[100px] w-full justify-center font-semibold items-center"
+  >
     <input
       type="button"
       @click="visszaszamlalo()"
       value="Kép készítése"
-      class="bg-orange-400 border-2 border-stone-950 h-28 w-2/3 rounded-xl cursor-pointer meret "
+      class="bg-orange-400 border-2 border-stone-950 h-28 w-2/3 rounded-xl cursor-pointer meret"
     />
   </div>
 </template>
