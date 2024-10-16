@@ -8,9 +8,14 @@ const canvas = ref(null);
 onMounted(() => {
   const img = new Image();
   img.onload = function () {
+    // Draw the image on the canvas, set the canvas size to the image size
+    canvas.value.width = 960;
+    canvas.value.height = 540;
     canvas.value
       .getContext("2d")
       .drawImage(img, 0, 0, canvas.value.width, canvas.value.height);
+
+    // Set the canvas size to the image siz
   };
   img.onerror = function () {
     console.error("Failed to load image");
@@ -21,14 +26,9 @@ onMounted(() => {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 border-slate-800 h-[752px] w-[1000px] bg-white sm:mt-36 xl:mt-10"
+    class="flex items-center justify-center border-2 border-slate-800 h-[546px] w-[966px] rounded-md bg-white sm:mt-36 xl:mt-10"
   >
-    <canvas
-      ref="canvas"
-      class="rounded-md absolute"
-      width="1000"
-      height="800"
-    ></canvas>
+    <canvas ref="canvas" class="rounded-md absolute"></canvas>
   </div>
   <div class="flex-row text-5xl sm:mt-36 xl:mt-10">
     <RouterLink to="/">

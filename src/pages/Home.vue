@@ -27,10 +27,17 @@ function visszaszamlalo() {
 
 onMounted(() => {
   navigator.mediaDevices
-    .getUserMedia({ video: true })
+    .getUserMedia({ video: { width: 3840, height: 2160 }, audio: false })
     .then((stream) => {
       video.value.srcObject = stream;
       video.value.play();
+
+      // Set video width and height to canvas
+      video.value.addEventListener("loadedmetadata", () => {
+        canvas.value.width = video.value.videoWidth;
+        canvas.value.height = video.value.videoHeight;
+        console.log(video.value.videoWidth, video.value.videoHeight);
+      });
     })
     .catch((err) => {
       console.error("Error accessing media devices.", err);
@@ -54,7 +61,7 @@ function takePicture() {
       import.meta.url
     ).href; // Source of your watermark image
     image_data_url = watermarkedDataURL(canvas.value, watermarkImage);
-    console.log(image_data_url);
+    console.log(canvas.value.width, canvas.value.height);
   } else {
     console.warn("Video is not ready yet.");
   }
@@ -97,7 +104,7 @@ function watermarkedDataURL(canvas, watermarkImage) {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 sm:mt-28 xl:mt-10 border-slate-800 h-[754px] w-[1000px] bg-white"
+    class="flex items-center justify-center border-2 mt-3 sm:mt-28 xl:mt-10 border-slate-800 h-[546px] w-[966px] rounded-md bg-white"
   >
     <div class="absolute left-[50%] top-[2000px] text-2xl">
       <link
@@ -119,23 +126,18 @@ function watermarkedDataURL(canvas, watermarkImage) {
       </div>
     </div>
     <div class="flex justify-center h-full">
-      <video autoplay="true" width="1920" height="1080" ref="video"></video>
-      <canvas
-        ref="canvas"
-        class="rounded-md absolute hidden"
-        width="1920"
-        height="1080"
-      ></canvas>
+      <video autoplay="true" ref="video" class="rounded-md w-[960px]"></video>
+      <canvas ref="canvas" class="rounded-md absolute hidden"></canvas>
     </div>
   </div>
   <div
-    class="flex flex-row text-5xl sm:mt-[100px] xl:mt-10 w-full justify-center font-semibold items-center"
+    class="flex flex-row sm:text-5xl text-2xl mt-2 sm:mt-[100px] xl:mt-10 w-full justify-center font-semibold items-center"
   >
     <input
       type="button"
       @click="visszaszamlalo()"
       value="Kép készítése"
-      class="bg-orange-400 border-2 border-stone-950 h-28 w-2/3 rounded-xl cursor-pointer meret"
+      class="bg-orange-400 border-2 border-stone-950 p-2 w-full sm:h-28 sm:w-2/3 rounded-xl cursor-pointer meret"
     />
   </div>
 </template>
