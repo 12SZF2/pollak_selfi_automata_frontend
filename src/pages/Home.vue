@@ -119,7 +119,7 @@ function watermarkedDataURL(canvas, watermarkImage) {
       </div>
     </div>
     <div class="flex justify-center h-full">
-      <video autoplay="true" width="1000" height="800" ref="video"></video>
+      <video autoplay="true" width="1920" height="1080" ref="video"></video>
       <canvas
         ref="canvas"
         class="rounded-md absolute hidden"
