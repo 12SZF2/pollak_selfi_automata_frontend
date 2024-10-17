@@ -2,12 +2,14 @@
 import { ref, onMounted } from "vue";
 import { store } from "../config/store.js";
 import { useRouter } from "vue-router";
+import Upscaler from "upscaler"
 
 const router = useRouter();
 const counter = ref(3);
 const isclicked = ref(false);
 const video = ref(null);
 const canvas = ref(null);
+const upscaler = new Upscaler()
 let image_data_url = "";
 
 function visszaszamlalo() {
@@ -26,6 +28,7 @@ function visszaszamlalo() {
 }
 
 onMounted(() => {
+  
   navigator.mediaDevices
     .getUserMedia({ video: { width: 3840, height: 2160 }, audio: false })
     .then((stream) => {
@@ -61,6 +64,12 @@ function takePicture() {
       import.meta.url
     ).href; // Source of your watermark image
     image_data_url = watermarkedDataURL(canvas.value, watermarkImage);
+    upscaler.upscale(image_data_url, {
+      patchSize : 8,
+      padding : 1,
+    }).then(upscaleImgSRC => {
+      console.log(upscaleImgSRC)
+    })
     console.log(canvas.value.width, canvas.value.height);
   } else {
     console.warn("Video is not ready yet.");
@@ -104,7 +113,7 @@ function watermarkedDataURL(canvas, watermarkImage) {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 mt-3 sm:mt-28 xl:mt-10 border-slate-800 h-[546px] w-[966px] rounded-md bg-white"
+    class="flex items-center justify-center border-2 mt-3 sm:mt-28 xl:mt-10 border-slate-800 h-[546px] w-[966px] rounded-xl bg-white"
   >
     <div class="absolute left-[50%] top-[2000px] text-2xl">
       <link
@@ -146,7 +155,7 @@ function watermarkedDataURL(canvas, watermarkImage) {
   width: 350px;
   height: 350px;
   position: fixed;
-  top: 55%;
+  top: 47%;
   left: 50%;
   margin-top: -175px;
   margin-left: -175px;

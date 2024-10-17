@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "upscaler": "^1.0.0-beta.19",
     "vue": "^3.4.37",
     "vue-router": "^4.4.5",
     "vue-watermark": "^0.1.1"

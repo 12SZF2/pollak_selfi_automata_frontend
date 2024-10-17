@@ -9,8 +9,8 @@ onMounted(() => {
   const img = new Image();
   img.onload = function () {
     // Draw the image on the canvas, set the canvas size to the image size
-    canvas.value.width = 960;
-    canvas.value.height = 540;
+    canvas.value.width = 1920/1.924;
+    canvas.value.height = 1080/1.924;
     canvas.value
       .getContext("2d")
       .drawImage(img, 0, 0, canvas.value.width, canvas.value.height);
@@ -26,7 +26,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="flex items-center justify-center border-2 border-slate-800 h-[546px] w-[966px] rounded-md bg-white sm:mt-36 xl:mt-10"
+    class="flex items-center justify-center border-2 border-slate-800 h-[565px] w-[1000px] rounded-md bg-white sm:mt-36 xl:mt-10"
   >
     <canvas ref="canvas" class="rounded-md absolute"></canvas>
   </div>
