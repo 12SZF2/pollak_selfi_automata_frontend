@@ -2,14 +2,17 @@
 import { ref, onMounted } from "vue";
 import { store } from "../config/store.js";
 import { useRouter } from "vue-router";
-import Upscaler from "upscaler"
-
+// import Upscaler from "upscaler";
+// import * as models from "@upscalerjs/esrgan-thick";
 const router = useRouter();
 const counter = ref(3);
 const isclicked = ref(false);
 const video = ref(null);
 const canvas = ref(null);
-const upscaler = new Upscaler()
+// const upscaler = new Upscaler({
+//   model: models.x8,
+// });
+
 let image_data_url = "";
 
 function visszaszamlalo() {
@@ -28,7 +31,10 @@ function visszaszamlalo() {
 }
 
 onMounted(() => {
-  
+  // upscaler.warmup({ patchSize: 4, padding: 0 }).then(() => {
+  //   console.log("All warmed up");
+  // });
+
   navigator.mediaDevices
     .getUserMedia({ video: { width: 3840, height: 2160 }, audio: false })
     .then((stream) => {
@@ -64,12 +70,15 @@ function takePicture() {
       import.meta.url
     ).href; // Source of your watermark image
     image_data_url = watermarkedDataURL(canvas.value, watermarkImage);
-    upscaler.upscale(image_data_url, {
-      patchSize : 8,
-      padding : 1,
-    }).then(upscaleImgSRC => {
-      console.log(upscaleImgSRC)
-    })
+    // upscaler
+    //   .upscale(image_data_url, {
+    //     patchSize: 4,
+    //     padding: 0,
+    //   })
+    //   .then((upscaleImgSRC) => {
+    //     console.log(upscaleImgSRC);
+    //     store.data.image = upscaleImgSRC;
+    //   });
     console.log(canvas.value.width, canvas.value.height);
   } else {
     console.warn("Video is not ready yet.");

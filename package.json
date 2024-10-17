@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@upscalerjs/esrgan-medium": "^1.0.0-beta.13",
+    "@upscalerjs/esrgan-thick": "^1.0.0-beta.16",
+    "selfi_automata_frontend": "file:",
     "upscaler": "^1.0.0-beta.19",
     "vue": "^3.4.37",
     "vue-router": "^4.4.5",
