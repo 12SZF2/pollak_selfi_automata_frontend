@@ -36,7 +36,7 @@ onMounted(() => {
   // });
 
   navigator.mediaDevices
-    .getUserMedia({ video: { width: 3840, height: 2160 }, audio: false })
+    .getUserMedia({ video: { width: 1920, height: 1080 }, audio: false })
     .then((stream) => {
       video.value.srcObject = stream;
       video.value.play();
